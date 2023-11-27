@@ -21,11 +21,25 @@
 
 / {
     behaviors {
-        td0: EscGrv {
+        gravesc: gravesc {
             compatible = "zmk,behavior-tap-dance";
-            label = "Esc ~";
+            label = "GRAVESC";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>;
+        };
+
+        aero_cadet: aero_cadet {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AERO_CADET";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS>, <&kp RIGHT_PARENTHESIS>;
+        };
+
+        aero_cadet_curly: aero_cadet_curly {
+            compatible = "zmk,behavior-tap-dance";
+            label = "AERO_CADET_CURLY";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACE>, <&kp RIGHT_BRACE>;
         };
     };
 
@@ -33,28 +47,18 @@
         compatible = "zmk,combos";
 
         aero-cadet {
-            bindings = <&kp LEFT_PARENTHESIS>;
+            bindings = <&aero_cadet>;
             key-positions = <43 46>;
         };
 
-        arrow-vim-h {
-            bindings = <&kp LEFT_ARROW>;
-            key-positions = <15 16 18>;
+        vim-arrows {
+            bindings = <&mo 3>;
+            key-positions = <15 16>;
         };
 
-        arrow-vim-j {
-            bindings = <&kp DOWN_ARROW>;
-            key-positions = <15 16 19>;
-        };
-
-        arrow-vim-k {
-            bindings = <&kp UP_ARROW>;
-            key-positions = <15 16 20>;
-        };
-
-        arrow-vim-l {
-            bindings = <&kp RIGHT_ARROW>;
-            key-positions = <15 16 21>;
+        arrow_cadet_curly {
+            bindings = <&aero_cadet_curly>;
+            key-positions = <44 45>;
         };
     };
 
@@ -69,10 +73,10 @@
             //                     | GUI  | DEL  | RET  |  SPACE  |   ESC   |  |   RET   |  SPACE  | TAB  | BSPC  | R-ALT |
 
             bindings = <
-&gresc     &kp Q  &kp W  &kp E      &kp R         &kp T                                                                      &kp Y      &kp U  &kp I      &kp O    &kp P            &none
-&kp CAPS   &kp A  &kp S  &kp D      &kp F         &kp G                                                                      &kp H      &kp J  &kp K      &kp L    &lt 1 SEMICOLON  &kp SQT
-&kp LSHFT  &kp Z  &kp X  &kp C      &kp V         &kp B         &kp LEFT_BRACKET  &none          &mo 3    &kp RIGHT_BRACKET  &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH         &kp RCTRL
-                         &kp LCTRL  &kp LEFT_ALT  &kp LEFT_GUI  &kp SPACE         &kp BACKSPACE  &kp TAB  &kp RET            &kp RCTRL  &mo 2  &kp RALT
+&gravesc   &kp Q  &kp W  &kp E      &kp R         &kp T                                                                      &kp Y      &kp U  &kp I          &kp O    &kp P            &none
+&kp CAPS   &kp A  &kp S  &kp D      &kp F         &kp G                                                                      &kp H      &kp J  &kp K          &kp L    &lt 1 SEMICOLON  &kp SQT
+&kp LSHFT  &kp Z  &kp X  &kp C      &kp V         &kp B         &kp LEFT_BRACKET  &none          &mo 4    &kp RIGHT_BRACKET  &kp N      &kp M  &kp COMMA      &kp DOT  &kp FSLH         &kp RCTRL
+                         &kp LCTRL  &kp LEFT_ALT  &kp LEFT_GUI  &kp SPACE         &kp BACKSPACE  &kp TAB  &kp RET            &kp RCTRL  &mo 2  &kp RIGHT_GUI
             >;
 
             sensor-bindings =
@@ -100,6 +104,15 @@
             >;
         };
 
+        vim-arrow-keys {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                                  &trans    &trans    &trans  &trans     &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans  &trans     &trans  &trans
+                        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans
+            >;
+        };
+
         system_layer {
             // ---------------------------------------------------------------------------------------------------------------------------------
             // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |      |      |      |      |      |      |
@@ -108,10 +121,10 @@
             //                       |      |      |      |      |      |      |      |      |      |      |      |      |
 
             bindings = <
-&bootloader  &trans      &trans      &bt BT_CLR  &bt BT_PRV  &bt BT_NXT                                    &trans  &trans  &trans  &trans  &trans  &trans
-&trans       &trans      &trans      &trans      &trans      &out OUT_TOG                                  &trans  &trans  &trans  &trans  &trans  &trans
-&bl BL_TOG   &bl BL_INC  &bl BL_DEC  &trans      &trans      &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                                     &trans      &trans      &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&bootloader  &trans      &trans      &bt BT_CLR    &bt BT_PRV    &bt BT_NXT                                    &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans      &trans      &bt BT_SEL 0  &bt BT_SEL 1  &out OUT_TOG                                  &trans  &trans  &trans  &trans  &trans  &trans
+&bl BL_TOG   &bl BL_INC  &bl BL_DEC  &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                                     &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
     };
