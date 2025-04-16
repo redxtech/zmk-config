@@ -27,43 +27,24 @@
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>;
         };
-
-        aero_cadet: aero_cadet {
-            compatible = "zmk,behavior-tap-dance";
-            label = "AERO_CADET";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_PARENTHESIS>, <&kp RIGHT_PARENTHESIS>;
-        };
-
-        aero_cadet_curly: aero_cadet_curly {
-            compatible = "zmk,behavior-tap-dance";
-            label = "AERO_CADET_CURLY";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_BRACE>, <&kp RIGHT_BRACE>;
-        };
     };
 
     combos {
         compatible = "zmk,combos";
 
-        aero-cadet {
-            bindings = <&aero_cadet>;
-            key-positions = <43 46>;
-        };
-
         vim-arrows {
-            bindings = <&mo 4>;
+            bindings = <&mo 3>;
             key-positions = <3 4>;
         };
 
-        arrow_cadet_curly {
-            bindings = <&aero_cadet_curly>;
-            key-positions = <44 45>;
+        left_num_sym {
+            bindings = <&mo 1>;
+            key-positions = <15 16>;
         };
 
-        left_num_sym {
-            bindings = <&mo 2>;
-            key-positions = <15 16>;
+        right_num_sym {
+            bindings = <&mo 1>;
+            key-positions = <19 20>;
         };
 
         play_pause {
@@ -84,9 +65,9 @@
 
             bindings = <
 &kp GRAVE                   &kp Q  &kp W  &kp E         &kp R      &kp T                                                                    &kp Y    &kp U  &kp I          &kp O    &kp P            &none
-&kp LEFT_GUI                &kp A  &kp S  &kp D         &kp F      &kp G                                                                    &kp H    &kp J  &kp K          &kp L    &lt 2 SEMICOLON  &kp SQT
-&mt LSHFT LEFT_PARENTHESIS  &kp Z  &kp X  &kp C         &kp V      &kp B    &kp LEFT_BRACKET  &none          &mo 5       &kp RIGHT_BRACKET  &kp N    &kp M  &kp COMMA      &kp DOT  &kp FSLH         &mt RCTRL RIGHT_PARENTHESIS
-                                          &kp LEFT_ALT  &kp LCTRL  &kp ESC  &kp SPACE         &kp BACKSPACE  &kp ESCAPE  &kp RET            &kp TAB  &mo 3  &kp RIGHT_GUI
+&kp LEFT_GUI                &kp A  &kp S  &kp D         &kp F      &kp G                                                                    &kp H    &kp J  &kp K          &kp L    &lt 1 SEMICOLON  &kp SQT
+&mt LSHFT LEFT_PARENTHESIS  &kp Z  &kp X  &kp C         &kp V      &kp B    &kp LEFT_BRACKET  &none          &mo 4       &kp RIGHT_BRACKET  &kp N    &kp M  &kp COMMA      &kp DOT  &kp FSLH         &mt RCTRL RIGHT_PARENTHESIS
+                                          &kp LEFT_ALT  &kp LCTRL  &kp ESC  &kp SPACE         &kp BACKSPACE  &kp ESCAPE  &kp RET            &kp TAB  &mo 2  &kp RIGHT_GUI
             >;
 
             sensor-bindings =
@@ -96,20 +77,11 @@
             label = "default";
         };
 
-        gaming {
-            bindings = <
-&kp ESC    &kp N1  &kp Q  &kp W   &kp E    &kp R                                         &trans  &trans  &trans  &trans  &trans  &trans
-&kp LSHFT  &kp N2  &kp A  &kp S   &kp D    &kp F                                         &trans  &trans  &trans  &trans  &trans  &trans
-&kp LCTRL  &kp N3  &kp Z  &kp X   &kp C    &kp V      &kp G      &none   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                          &trans  &kp TAB  &kp SPACE  &kp SPACE  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-        };
-
         num_sym {
             bindings = <
-&trans  &kp MINUS    &kp EQUAL    &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp EXCLAMATION                                   &kp N1  &kp N2  &kp N3  &kp PLUS   &kp ASTERISK  &none
+&trans  &kp MINUS    &kp EQUAL    &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp EXCLAMATION                                   &kp N7  &kp N8  &kp N9  &kp PLUS   &kp ASTERISK  &none
 &trans  &kp AT_SIGN  &kp PERCENT  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp AMPERSAND                                     &kp N4  &kp N5  &kp N6  &kp MINUS  &trans        &kp K_PLAY_PAUSE
-&trans  &kp DOLLAR   &kp CARET    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSLASH    &trans   &none   &trans  &trans  &kp N7  &kp N8  &kp N9  &kp N0     &trans        &trans
+&trans  &kp DOLLAR   &kp CARET    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp BACKSLASH    &trans   &none   &trans  &trans  &kp N1  &kp N2  &kp N3  &kp N0     &trans        &trans
                                   &trans                &trans                 &trans           &kp DEL  &trans  &trans  &trans  &trans  &trans  &trans
             >;
 
@@ -119,8 +91,8 @@
         function {
             bindings = <
 &trans      &kp F1  &kp F2   &kp F3   &kp F4   &trans                                  &kt DEL  &kp INSERT  &trans  &kp SYSREQ  &kp PRINTSCREEN    &none
-&caps_word  &kp F5  &kp F6   &kp F7   &kp F8   &trans                                  &trans   &trans      &trans  &kp K_STOP  &kp K_PREV         &kp K_NEXT
-&trans      &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans  &trans  &trans  &trans  &tog 1   &tog 4      &trans  &kp K_MUTE  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP
+&trans      &kp F5  &kp F6   &kp F7   &kp F8   &trans                                  &trans   &trans      &trans  &kp K_STOP  &kp K_PREV         &kp K_NEXT
+&caps_word  &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans  &trans  &trans  &trans  &trans   &trans      &trans  &kp K_MUTE  &kp C_VOLUME_DOWN  &kp C_VOLUME_UP
                              &trans   &trans   &trans  &trans  &trans  &trans  &trans  &trans   &trans      &trans
             >;
         };
